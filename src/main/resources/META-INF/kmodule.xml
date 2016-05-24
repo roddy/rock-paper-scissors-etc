@@ -1,0 +1,8 @@
+<kmodule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://jboss.org/kie/6.0.0/kmodule">
+  <kbase name="validation" packages="rules.validation">
+    <ksession name="validationSession" type="stateful" />
+  </kbase>
+  <kbase name="game" packages="rules.game">
+    <ksession name="gameSession" type="stateful" />
+  </kbase>
+</kmodule>

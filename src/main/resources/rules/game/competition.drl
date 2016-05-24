@@ -1,0 +1,118 @@
+package rules.game;
+
+import net.roddy.rps.assets.GameOutcome;
+import net.roddy.rps.assets.Player;
+
+dialect "mvel"
+
+global GameOutcome outcome;
+
+rule "Duplicate throws are a tie"
+when
+  Player( $throw : move != null )
+  Player( move == $throw )
+then
+  outcome.setWinningThrow($throw);
+  outcome.setLosingThrow($throw);
+  outcome.setVerb("ties");
+end
+
+rule "Scissors cut paper"
+when
+  Player( move == "scissors" )
+  Player( move == "paper" )
+then
+  outcome.setWinningThrow("scissors");
+  outcome.setVerb("cut");
+  outcome.setLosingThrow("paper");
+end
+
+rule "Paper covers rock"
+when
+  Player( move == "paper" )
+  Player( move == "rock" )
+then
+  outcome.setWinningThrow("paper");
+  outcome.setVerb("covers");
+  outcome.setLosingThrow("rock");
+end
+
+rule "Rock crushes lizard"
+when
+  Player( move == "rock" )
+  Player( move == "lizard" ) 
+then
+  outcome.setWinningThrow("rock");
+  outcome.setVerb("crushes");
+  outcome.setLosingThrow("lizard");
+end
+
+rule "Lizard poisons Spock"
+when
+  Player( move == "lizard" )
+  Player( move == "spock" ) 
+then
+  outcome.setWinningThrow("lizard");
+  outcome.setVerb("poisons");
+  outcome.setLosingThrow("spock");
+end
+
+rule "Spock smashes scissors"
+when
+  Player( move == "spock" )
+  Player( move == "scissors" ) 
+then
+  outcome.setWinningThrow("spock");
+  outcome.setVerb("smashes");
+  outcome.setLosingThrow("scissors");
+end
+
+rule "Scissors decapitate lizard"
+when
+  Player( move == "scissors" )
+  Player( move == "lizard" ) 
+then
+  outcome.setWinningThrow("scissors");
+  outcome.setVerb("decapitate");
+  outcome.setLosingThrow("lizard");
+end
+
+rule "Lizard eats paper" 
+when
+  Player( move == "lizard" )
+  Player( move == "paper" )
+then
+  outcome.setWinningThrow("lizard");
+  outcome.setVerb("eats");
+  outcome.setLosingThrow("paper");
+end
+
+rule "Paper disproves Spock"
+when
+  Player( move == "paper" )
+  Player( move == "spock" )
+then
+  outcome.setWinningThrow("paper");
+  outcome.setVerb("disproves");
+  outcome.setLosingThrow("spock");
+end
+
+rule "Spock vaporizes rock"
+when
+  Player( move == "spock" )
+  Player( move == "rock" )
+then
+  outcome.setWinningThrow("spock");
+  outcome.setVerb("vaporizes");
+  outcome.setLosingThrow("rock");
+end
+
+rule "Rock crushes scissors"
+when
+  Player( move == "rock" )
+  Player( move == "scissors" )
+then
+  outcome.setWinningThrow("rock");
+  outcome.setVerb("crushes");
+  outcome.setLosingThrow("scissors");
+end

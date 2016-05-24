@@ -1,0 +1,24 @@
+package rules.validation;
+
+import net.roddy.rps.assets.Player;
+import net.roddy.rps.assets.ValidationOutcome;
+
+dialect "mvel"
+
+global ValidationOutcome outcome;
+
+rule "A player's move must be all lower case"
+when
+  not(Player( move matches "[a-z]+"))
+then
+  outcome.setValid(false);
+  outcome.addValidationError("Player move is not all lowercase.");
+end
+
+rule "A player's move must be one of the expected values"
+when
+  Player( $move : move not in ( "rock", "paper", "scissors", "lizard", "spock" ))
+then
+  outcome.setValid(false);
+  outcome.addValidationError("Player move is invalid: " + $move);
+end
